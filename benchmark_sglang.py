@@ -316,6 +316,14 @@ def _build_mode_runs(
                     if args.speculative_draft_attention_backend
                     else []
                 ),
+                *(
+                    [
+                        "--speculative-num-draft-tokens",
+                        str(int(args.block_size)),
+                    ]
+                    if args.block_size is not None
+                    else []
+                ),
             ],
             True,
         )
@@ -529,6 +537,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--dataset-name", type=str, required=True)
     parser.add_argument("--target-model", default="Qwen/Qwen3-8B")
     parser.add_argument("--draft-model", default="z-lab/Qwen3-8B-DFlash-b16")
+    parser.add_argument("--block-size", type=int, default=None)
     parser.add_argument(
         "--skip-baseline",
         action="store_true",
