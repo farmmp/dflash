@@ -269,7 +269,7 @@ def _build_common_server_args(
         "--cuda-graph-max-bs",
         str(args.max_running_requests),
         "--cuda-graph-bs", 
-        *[str(i) for i in range(1, args.max_running_requests + 1)],
+        *[str(i) for i in range(1, 34)],
         "--mamba-scheduler-strategy",
         str(args.mamba_scheduler_strategy),
     ]
