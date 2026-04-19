@@ -69,7 +69,8 @@ def dflash_generate(
     temperature: float,
     block_size: Optional[int] = None,
     mask_token_id: Optional[int] = None,
-    return_stats: bool = False,
+    # Setting return_stats=True by default so I can always see timing info during experiments
+    return_stats: bool = True,
 ):
     num_input_tokens = input_ids.shape[1]
     max_length = num_input_tokens + max_new_tokens
@@ -88,8 +89,4 @@ def dflash_generate(
     output = target(
         input_ids,
         position_ids=position_ids[:, :num_input_tokens],
-        past_key_values=past_key_values_target,
-        use_cache=True,
-        logits_to_keep=1,
-        output_hidden_states=True,
-    )
+        past_key_values=past_key_values
