@@ -1,9 +1,12 @@
+# Personal fork: added __version__ for quick version checks
 __all__ = [
     "DFlashDraftModel",
     "extract_context_feature",
     "load_and_process_dataset",
     "sample",
 ]
+
+__version__ = "0.1.0-personal"
 
 
 def __getattr__(name):
