@@ -69,8 +69,8 @@ def dflash_generate(
     temperature: float,
     block_size: Optional[int] = None,
     mask_token_id: Optional[int] = None,
-    # Setting return_stats=True by default so I can always see timing info during experiments
-    return_stats: bool = True,
+    # Changed default to False - return_stats=True adds cuda syncs that skew timing benchmarks
+    return_stats: bool = False,
 ):
     num_input_tokens = input_ids.shape[1]
     max_length = num_input_tokens + max_new_tokens
@@ -88,5 +88,4 @@ def dflash_generate(
     prefill_start = _cuda_time() if return_stats else None
     output = target(
         input_ids,
-        position_ids=position_ids[:, :num_input_tokens],
-        past_key_values=past_key_values
+   
