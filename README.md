@@ -58,4 +58,4 @@ vllm serve Qwen/Qwen3.5-27B \
   --max-model-len 8192
 ```
 
-> **Note:** I found that `--max-model-len 8192` works well for most tasks and keeps VRAM usage manageable. Increase to 32768 if you need longer context.
+> **Note:** I found that `--max-model-len 8192` is a reasonable default for most consumer GPU setups (e.g. 2x A100 80GB). Increase to `32768` if you have more VRAM available.
